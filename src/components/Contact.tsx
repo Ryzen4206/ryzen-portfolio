@@ -55,7 +55,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Contact Me</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4 hover:text-primary-600 transition-colors duration-300">Contact Me</h2>
           <p className="text-gray-600">Get in touch</p>
         </div>
 
@@ -68,13 +68,13 @@ const Contact = () => {
                 <a
                   key={index}
                   href={info.link}
-                  className="flex items-center p-6 bg-gray-50 rounded-2xl hover:bg-gray-100 transition-colors duration-200 group"
+                  className="flex items-center p-6 bg-gray-50 rounded-2xl hover:bg-primary-50 transition-all duration-300 group cursor-pointer hover:scale-105 hover:shadow-lg"
                 >
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary-200 transition-colors duration-200">
-                    <info.icon className="text-primary-600" size={24} />
+                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4 group-hover:bg-primary-200 group-hover:scale-110 transition-all duration-300">
+                    <info.icon className="text-primary-600 group-hover:scale-110 transition-transform duration-200" size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">{info.title}</h4>
+                    <h4 className="font-semibold text-gray-800 group-hover:text-primary-600 transition-colors duration-300">{info.title}</h4>
                     <p className="text-gray-600">{info.value}</p>
                   </div>
                 </a>
@@ -94,7 +94,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent hover:border-primary-300 transition-all duration-300"
                 />
               </div>
               <div>
@@ -105,7 +105,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent hover:border-primary-300 transition-all duration-300"
                 />
               </div>
               <div>
@@ -116,15 +116,15 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent resize-none"
+                  className="w-full p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-600 focus:border-transparent resize-none hover:border-primary-300 transition-all duration-300"
                 />
               </div>
               <Button 
                 type="submit"
-                className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-semibold flex items-center space-x-2 w-full justify-center"
+                className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-full font-semibold flex items-center space-x-2 w-full justify-center hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl group"
               >
                 <span>Send Message</span>
-                <Send size={18} />
+                <Send size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Button>
             </form>
           </div>
