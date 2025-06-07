@@ -12,41 +12,33 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
-    // Check if we're in the browser
-    if (typeof window === 'undefined') {
-      return 'dark'; // Default to dark on server
-    }
-    
-    // 🌗 Check localStorage first, then fall back to system preference
+    if (typeof window === 'undefined') return 'dark'; // ⛅ Server-side fallback
+
     const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
-      return savedTheme;
-    }
-    
-    // 🎨 Default to system preference (dark mode by default)
+    if (savedTheme === 'dark' || savedTheme === 'light') return savedTheme;
+
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return prefersDark ? 'dark' : 'light';
+    return prefersDark ? 'dark' : 'light'; // 🌗 Use system preference
   });
 
   useEffect(() => {
-    // Apply theme to document
-    const root = window.document.documentElement;
+    const root = document.documentElement;
+
+    // 🧼 Remove any existing theme classes
     root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-    
-    // 💾 Persist theme choice in localStorage
+    root.classList.add(theme); // 🌙 Apply new theme
+
+    // 💾 Save to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Listen for system theme changes
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const handleChange = (e: MediaQueryListEvent) => {
-      // Only update if user hasn't manually set a theme preference
       const savedTheme = localStorage.getItem('theme');
       if (!savedTheme) {
-        setTheme(e.matches ? 'dark' : 'light');
+        setTheme(e.matches ? 'dark' : 'light'); // 🔄 Update if system changes
       }
     };
 
@@ -55,7 +47,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light')); // 🔁 Toggle manually
   };
 
   return (
@@ -65,9 +57,10 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
+// 📦 Hook for consuming theme context
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
