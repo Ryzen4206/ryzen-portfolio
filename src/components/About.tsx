@@ -9,6 +9,7 @@ const About = () => {
   const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation();
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation();
 
+  {/* 📊 Update your stats below */}
   const stats = [
     { icon: Award, value: '08+', label: 'Years experience' },
     { icon: Users, value: '20+', label: 'Completed projects' },
@@ -38,6 +39,7 @@ const About = () => {
               }`}
             >
               <div className="relative group">
+                {/* 🖼️ Replace with your about section image */}
                 <img 
                   src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=600&q=80"
                   alt="About Alexa"
@@ -51,6 +53,7 @@ const About = () => {
             <div className={`transition-all duration-1000 delay-500 ${
               imageVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}>
+              {/* 👇 Replace this paragraph with your about info */}
               <p className="text-muted-foreground text-lg leading-relaxed mb-8">
                 Web developer, with extensive knowledge and years of experience, working in web 
                 technologies and UI/UX design, delivering quality work.
@@ -74,7 +77,7 @@ const About = () => {
                 ))}
               </div>
 
-              {/* Download CV Button */}
+              {/* 📄 Update the CV download link */}
               <Button className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-full font-semibold flex items-center space-x-2 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl group">
                 <span>Download CV</span>
                 <Download size={18} className="group-hover:translate-y-1 transition-transform duration-200" />

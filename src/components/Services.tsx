@@ -6,6 +6,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const Services = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
 
+  {/* 🛠️ Update your services below - add, remove, or modify as needed */}
   const services = [
     {
       icon: Monitor,
@@ -15,12 +16,12 @@ const Services = () => {
     {
       icon: Smartphone,
       title: 'Frontend Development',
-      description: 'Building responsive, high-performance web applications using cutting-edge technologies like React, TypeScript, and modern CSS frameworks.'
+      description: 'Building responsive, high-performance web applications using cutting-edge technologies like React, TypeScript, and modern CSS frameworks for seamless user interactions.'
     },
     {
       icon: Palette,
-      title: 'Branding',
-      description: 'Developing cohesive brand identities including logo design, color schemes, typography, and comprehensive brand guidelines for digital presence.'
+      title: 'Branding & Identity',
+      description: 'Developing cohesive brand identities including logo design, color schemes, typography, and comprehensive brand guidelines that create memorable digital experiences.'
     }
   ];
 

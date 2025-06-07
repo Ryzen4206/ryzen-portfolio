@@ -7,24 +7,31 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const Portfolio = () => {
   const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
 
+  {/* 🔧 Add your projects in the list below */}
   const projects = [
     {
       title: 'Modern Website',
       category: 'Web Design',
       image: 'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=600&q=80',
-      description: 'Modern responsive website with clean design'
+      description: 'Modern responsive website with clean design',
+      // 🔗 Add your project links here
+      link: '#'
     },
     {
       title: 'Brand App',
       category: 'App',
       image: 'https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80',
-      description: 'Mobile application with custom branding'
+      description: 'Mobile application with custom branding',
+      // 🔗 Add your project links here
+      link: '#'
     },
     {
       title: 'App Design',
       category: 'Design',
       image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80',
-      description: 'Beautiful app interface design'
+      description: 'Beautiful app interface design',
+      // 🔗 Add your project links here
+      link: '#'
     }
   ];
 
@@ -56,13 +63,18 @@ const Portfolio = () => {
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
                   <div className="relative overflow-hidden">
+                    {/* 🖼️ Replace project images with your own */}
                     <img 
                       src={project.image}
                       alt={project.title}
                       className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <Button className="bg-background text-foreground hover:bg-accent rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg border border-border">
+                      {/* 🔗 Update project links */}
+                      <Button 
+                        onClick={() => window.open(project.link, '_blank')}
+                        className="bg-background text-foreground hover:bg-accent rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg border border-border"
+                      >
                         <ExternalLink size={20} />
                       </Button>
                     </div>

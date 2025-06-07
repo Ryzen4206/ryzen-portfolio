@@ -24,37 +24,43 @@ const Hero = () => {
                 heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
+              {/* 👉 Insert your name and role here */}
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
                 Hi, I'm <span className="text-primary hover:text-primary/80 transition-colors duration-300">Alexa</span>
               </h1>
+              {/* 💼 Update your job title/role */}
               <p className="text-xl md:text-2xl text-primary font-semibold mb-4">
                 Frontend Developer
               </p>
+              {/* 📝 Replace with your personal introduction */}
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 High level experience in web design and development knowledge, 
                 producing quality work.
               </p>
             </div>
 
-            {/* Social Links */}
+            {/* 🔗 Update your social media links below */}
             <div 
               ref={socialRef}
               className={`flex justify-center lg:justify-start space-x-4 mb-8 transition-all duration-1000 delay-300 ${
                 socialVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
             >
+              {/* 💼 Replace # with your LinkedIn profile URL */}
               <a 
                 href="#" 
                 className="w-12 h-12 bg-background rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 text-primary hover:text-primary/80 group border border-border"
               >
                 <Linkedin size={20} className="group-hover:scale-110 transition-transform duration-200" />
               </a>
+              {/* 🐙 Replace # with your GitHub profile URL */}
               <a 
                 href="#" 
                 className="w-12 h-12 bg-background rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 text-foreground hover:text-muted-foreground group border border-border"
               >
                 <Github size={20} className="group-hover:scale-110 transition-transform duration-200" />
               </a>
+              {/* 🎨 Replace # with your Dribbble profile URL */}
               <a 
                 href="#" 
                 className="w-12 h-12 bg-background rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300 text-pink-500 hover:text-pink-600 group border border-border"
@@ -92,6 +98,7 @@ const Hero = () => {
             <div className={`relative group transition-all duration-1000 delay-700 ${
               heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
+              {/* 🖼️ Replace with your profile image URL */}
               <div className="w-80 h-80 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-end justify-center overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
                 <img 
                   src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80"

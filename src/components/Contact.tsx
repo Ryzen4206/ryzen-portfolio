@@ -35,23 +35,24 @@ const Contact = () => {
     });
   };
 
+  {/* 📱 Update your contact information below */}
   const contactInfo = [
     {
       icon: Mail,
       title: 'Email',
-      value: 'alexa@example.com',
+      value: 'alexa@example.com', // 📧 Replace with your email
       link: 'mailto:alexa@example.com'
     },
     {
       icon: Phone,
       title: 'Call Me',
-      value: '+1 234-567-8900',
+      value: '+1 234-567-8900', // 📞 Replace with your phone number
       link: 'tel:+12345678900'
     },
     {
       icon: MapPin,
       title: 'Location',
-      value: 'San Francisco, CA',
+      value: 'San Francisco, CA', // 📍 Replace with your location
       link: '#'
     }
   ];
@@ -105,6 +106,7 @@ const Contact = () => {
             }`}
           >
             <h3 className="text-2xl font-semibold text-foreground mb-8">Write me your project</h3>
+            {/* 📝 Contact form - customize form handling as needed */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Input
