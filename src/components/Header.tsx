@@ -1,10 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Switch } from '@/components/ui/switch';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,11 +36,11 @@ const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-background/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-primary-600 hover:scale-105 transition-transform duration-200 cursor-pointer">Alexa</div>
+          <div className="text-2xl font-bold text-primary hover:scale-105 transition-transform duration-200 cursor-pointer">Alexa</div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
@@ -45,17 +48,28 @@ const Header = () => {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="text-gray-700 hover:text-primary-600 transition-all duration-300 font-medium relative group"
+                className="text-foreground hover:text-primary transition-all duration-300 font-medium relative group"
               >
                 {item.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-600 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
+            
+            {/* Theme Toggle */}
+            <div className="flex items-center space-x-2">
+              <Sun className="h-4 w-4 text-foreground" />
+              <Switch
+                checked={theme === 'dark'}
+                onCheckedChange={toggleTheme}
+                className="data-[state=checked]:bg-primary"
+              />
+              <Moon className="h-4 w-4 text-foreground" />
+            </div>
           </nav>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-gray-700 hover:text-primary-600 transition-colors duration-200 p-2 hover:bg-gray-100 rounded-lg"
+            className="md:hidden text-foreground hover:text-primary transition-colors duration-200 p-2 hover:bg-accent rounded-lg"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -64,16 +78,30 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 py-4 bg-white rounded-lg shadow-lg animate-fade-in">
+          <nav className="md:hidden mt-4 py-4 bg-background rounded-lg shadow-lg animate-fade-in">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-primary-600 hover:bg-primary-50 transition-all duration-200 rounded-md mx-2"
+                className="block w-full text-left px-4 py-3 text-foreground hover:text-primary hover:bg-accent transition-all duration-200 rounded-md mx-2"
               >
                 {item.name}
               </button>
             ))}
+            
+            {/* Mobile Theme Toggle */}
+            <div className="flex items-center justify-between px-6 py-3 mx-2">
+              <span className="text-foreground font-medium">Dark Mode</span>
+              <div className="flex items-center space-x-2">
+                <Sun className="h-4 w-4 text-foreground" />
+                <Switch
+                  checked={theme === 'dark'}
+                  onCheckedChange={toggleTheme}
+                  className="data-[state=checked]:bg-primary"
+                />
+                <Moon className="h-4 w-4 text-foreground" />
+              </div>
+            </div>
           </nav>
         )}
       </div>

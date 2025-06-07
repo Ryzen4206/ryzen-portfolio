@@ -2,8 +2,11 @@
 import React from 'react';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Portfolio = () => {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollAnimation();
+
   const projects = [
     {
       title: 'Modern Website',
@@ -26,44 +29,60 @@ const Portfolio = () => {
   ];
 
   return (
-    <section id="portfolio" className="py-20 bg-gray-50">
+    <section id="portfolio" className="py-20 bg-secondary/30 dark:bg-secondary/10">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 hover:text-primary-600 transition-colors duration-300">Portfolio</h2>
-          <p className="text-gray-600">Most recent work</p>
+        <div 
+          ref={titleRef}
+          className={`text-center mb-16 transition-all duration-1000 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
+          <h2 className="text-4xl font-bold text-foreground mb-4 hover:text-primary transition-colors duration-300">Portfolio</h2>
+          <p className="text-muted-foreground">Most recent work</p>
         </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-2">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <Button className="bg-white text-gray-800 hover:bg-gray-100 rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg">
-                      <ExternalLink size={20} />
-                    </Button>
+            {projects.map((project, index) => {
+              const { ref, isVisible } = useScrollAnimation();
+              
+              return (
+                <div 
+                  key={index} 
+                  ref={ref}
+                  className={`bg-background rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-1000 group cursor-pointer hover:-translate-y-2 border border-border ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 200}ms` }}
+                >
+                  <div className="relative overflow-hidden">
+                    <img 
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <Button className="bg-background text-foreground hover:bg-accent rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg border border-border">
+                        <ExternalLink size={20} />
+                      </Button>
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h3>
+                    <p className="text-primary text-sm font-medium mb-2">{project.category}</p>
+                    <p className="text-muted-foreground">{project.description}</p>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-primary-600 transition-colors duration-300">{project.title}</h3>
-                  <p className="text-primary-600 text-sm font-medium mb-2">{project.category}</p>
-                  <p className="text-gray-600">{project.description}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Navigation arrows */}
           <div className="flex justify-center mt-12 space-x-4">
-            <Button className="bg-primary-600 hover:bg-primary-700 text-white rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
               <ChevronLeft size={20} />
             </Button>
-            <Button className="bg-primary-600 hover:bg-primary-700 text-white rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full p-3 hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl">
               <ChevronRight size={20} />
             </Button>
           </div>
